@@ -15,10 +15,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Margin="5 10 10 0" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Row="0" Margin="5 10 10 0" Grid.ColumnSpan="2" FontSize="100" FontWeight="Bold" TextAlignment="Center" IsReadOnly="True" Text="21:32.321"/>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
 
-            <Grid Margin="50 30" Height="60">
+            <Grid Margin="50 30" Height="120">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -26,9 +26,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
                 <Button Content="开始" x:Name="btn_Start" Grid.Column="0" Grid.Row="0" Margin="50 5 10 5"/>
                 <Button Content="重设" x:Name="btn_Reset" Grid.Column="1" Grid.Row="0" Margin="10 5 50 5"/>
+                <Button Content="设定" x:Name="btn_Set" Grid.Column="0" Grid.Row="1" Margin="50 5 10 5"/>
+                <Button Content="结束" x:Name="btn_Finish" Grid.Column="1" Grid.Row="1" Margin="10 5 50 5"/>
+                <TextBox x:Name="timeSetter" Grid.Row="2" Grid.ColumnSpan="2" Margin="50 10"/>
             </Grid>
         </StackPanel>
     </Grid>
