@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TomatoClock"
         xmlns:input="clr-namespace:System.Windows.Input;assembly=PresentationCore"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Loaded="Form_Loaded"
         Title="Clock" Height="350" Width="525">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding CmdFormLoaded}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -17,7 +22,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Margin="5 10 10 0" Grid.ColumnSpan="2" FontSize="100" FontWeight="Bold" TextAlignment="Center" IsReadOnly="True" Text="--:--"/>
+        <TextBox Grid.Row="0" Margin="5 10 10 0" Grid.ColumnSpan="2" FontSize="100" FontWeight="Bold" TextAlignment="Center" IsReadOnly="True" Text="{Binding TimeCount}"/>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
 
             <Grid Margin="50 30" Height="120">
@@ -26,16 +31,14 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
-                <Button Content="开始" x:Name="btn_Start" Grid.Column="0" Grid.Row="0" Margin="50 5 10 5" Click="btn_Start_Click"/>
-                <Button Content="重设" x:Name="btn_Reset" Grid.Column="1" Grid.Row="0" Margin="10 5 50 5" Click="btn_Reset_Click"/>
-                <Button Content="设定" x:Name="btn_Set" Grid.Column="0" Grid.Row="1" Margin="50 5 10 5" Click="btn_Set_Click"/>
-                <Button Content="结束" x:Name="btn_Finish" Grid.Column="1" Grid.Row="1" Margin="10 5 50 5" Click="btn_Finish_Click"/>
-                <TextBox x:Name="timeSetter" Grid.Row="2"  Margin="50 10 10 10" TextChanged="timeSetter_TextChanged" FontSize="32" input:InputMethod.IsInputMethodEnabled="False"/>
-                <TextBlock Text="分钟" Grid.Row="2" Grid.Column="1" Margin="10 30 50 10"/>
+                <Button Content="开始" Grid.Column="0" Grid.Row="0" Margin="50 5 10 5" Command="{Binding CmdStart}" IsEnabled="{Binding IsStop}"/>
+                <Button Content="设定" Grid.Column="1" Grid.Row="1" Margin="10 5 50 5" Command="{Binding CmdSet}" IsEnabled="{Binding IsStop}"/>
+                <Button Content="结束" Grid.Column="1" Grid.Row="0" Margin="10 5 50 5" Command="{Binding CmdStop}" IsEnabled="{Binding IsCountting}"/>
+                <TextBox x:Name="timeSetter" Grid.Row="1"  Margin="50 10 50 10"  FontSize="32" input:InputMethod.IsInputMethodEnabled="False" Text="{Binding MinuterSet}" IsEnabled="{Binding IsStop}"/>
+                <TextBlock Text="分钟" Grid.Row="1" Grid.Column="0" Margin="163,30,10,10"/>
             </Grid>
         </StackPanel>
     </Grid>
